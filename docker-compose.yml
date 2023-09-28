@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  manglerweb:
+    image: ${DOCKER_REGISTRY-}manglerweb
+    build:
+      context: .
+      dockerfile: ManglerWeb/Dockerfile
+
+  manglerapi:
+    image: ${DOCKER_REGISTRY-}manglerapi
+    build:
+      context: .
+      dockerfile: ManglerAPI/Dockerfile
+
