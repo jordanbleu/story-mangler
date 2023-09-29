@@ -18,3 +18,15 @@
 * API
    * Again, under ports click the :80 port
    * To get to swagger UI append `/swagger` to the URL
+
+### Rider
+
+* Follow steps above to install docker
+* also, install rider
+* In the top right are the build configs, click the drop down and go to `Edit Configuration`
+* Click the `+` in the top left to add a new config
+* Chose `docker-compose`
+* type a name at the top (can be anything) and point it to the docker-compose.yml file
+* save the build config
+* now, on the build config drop down, choose the one you just created
+* Click run to run / debug to debug
