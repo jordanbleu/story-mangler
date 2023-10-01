@@ -15,6 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerAPI.Client", "ManglerAPI.Client\ManglerAPI.Client.csproj", "{06E4FD7D-866B-4DC5-97CD-D8DA1F5BCA42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{BC2C69B2-3C10-45B6-84DE-589FB79134A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerAPI.CodeGen", "utilities\ManglerAPI.CodeGen\ManglerAPI.CodeGen.csproj", "{4B7B84E4-1969-4298-A7CC-61C1FA30F5A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,14 @@ Global
 		{0F6F03D7-3D74-4EB9-B044-0F2725C786BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F6F03D7-3D74-4EB9-B044-0F2725C786BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F6F03D7-3D74-4EB9-B044-0F2725C786BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E4FD7D-866B-4DC5-97CD-D8DA1F5BCA42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E4FD7D-866B-4DC5-97CD-D8DA1F5BCA42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E4FD7D-866B-4DC5-97CD-D8DA1F5BCA42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E4FD7D-866B-4DC5-97CD-D8DA1F5BCA42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7B84E4-1969-4298-A7CC-61C1FA30F5A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7B84E4-1969-4298-A7CC-61C1FA30F5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7B84E4-1969-4298-A7CC-61C1FA30F5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7B84E4-1969-4298-A7CC-61C1FA30F5A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,5 +55,6 @@ Global
 		SolutionGuid = {0C58EE64-8EE2-40F9-849A-1C94442FC923}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{4B7B84E4-1969-4298-A7CC-61C1FA30F5A4} = {BC2C69B2-3C10-45B6-84DE-589FB79134A3}
 	EndGlobalSection
 EndGlobal

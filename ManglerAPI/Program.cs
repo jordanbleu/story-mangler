@@ -1,5 +1,7 @@
-﻿using ManglerAPI.Story.Repositories;
+﻿using ManglerAPI.Extensions;
+using ManglerAPI.Story.Repositories;
 using ManglerAPI.Story.Services;
+using Microsoft.AspNetCore.Mvc.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddSwaggerGen(c =>
+{
+    // Tells Mangler.CodeGen to format methods like '{HttpMethod}{ControllerName}Async'
+    c.CustomOperationIds(e => $"{e.HttpMethod?.ToTitleCase()}{e.ActionDescriptor.RouteValues["controller"]}");
+});
 builder.Services.AddSingleton<StoryService>();
 builder.Services.AddSingleton<IStoryRepository, StoryDbRepository>();
 

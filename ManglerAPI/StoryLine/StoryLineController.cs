@@ -3,15 +3,15 @@ using ManglerAPI.Story.Repositories;
 using ManglerAPI.Story.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ManglerAPI.Story;
+namespace ManglerAPI.StoryLine;
 
-[Route("/story")]
-public class StoryController : ControllerBase
+[Route("/storyLine")]
+public class StoryLineController : ControllerBase
 {
     private readonly StoryService _storyService;
     private readonly IStoryRepository _storyRepository;
 
-    public StoryController(StoryService storyService, IStoryRepository storyRepository)
+    public StoryLineController(StoryService storyService, IStoryRepository storyRepository)
     {
         _storyService = storyService;
         _storyRepository = storyRepository;
@@ -20,13 +20,8 @@ public class StoryController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAsync([FromQuery] StoryGetRequest request)
     {
-        var story = await _storyRepository.GetById(request.Id);
-
-        return Ok(new StoryGetResponse()
-        {
-            Id = story.Id,
-            Title = story.Title
-        });
+        await Task.CompletedTask;
+        return NoContent();
     }
 
     [HttpPost]
