@@ -5,6 +5,30 @@
     "version": "1.0"
   },
   "paths": {
+    "/helloworld": {
+      "get": {
+        "tags": [
+          "HelloWorld"
+        ],
+        "operationId": "GetHelloWorld",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "HelloWorld"
+        ],
+        "operationId": "PostHelloWorld",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/story": {
       "get": {
         "tags": [

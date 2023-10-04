@@ -18,7 +18,7 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         var client = new ManglerClient("asdf", new HttpClient());
-        client.GetStoryAsync(123);
+        
         
         // //var client = new ManglerAPIClient.ManglerClient();
         // var data = client.StoryAsync(555);
