@@ -6,7 +6,7 @@ namespace ManglerWeb.Pages;
 
 public class IndexModel : PageModel
 {
-    public string Title { get; set; }
+    public string ApiText { get; set; }
     
     private readonly ILogger<IndexModel> _logger;
 
@@ -17,11 +17,18 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        var client = new ManglerClient("asdf", new HttpClient());
-        var result = await client.GetHelloWorldAsync();
+        var client = new ManglerClient("http://host.docker.internal:50881", new HttpClient());
+
+        try
+        {
+            var result = await client.GetHelloWorldAsync();
+            ApiText = result?.Text ?? "{the api call worked fine but the response was null}";
+        }
+        catch (ApiException<ErrorResponse> e)
+        {
+            ApiText = "there was an exception talking to the API. " + e.Message;
+        }
         
-        // //var client = new ManglerAPIClient.ManglerClient();
-        // var data = client.StoryAsync(555);
     }
 }
 

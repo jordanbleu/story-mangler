@@ -1,3 +1,4 @@
+using ManglerAPI.HelloWorld.Models;
 using ManglerAPI.Infrastructure.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,9 +8,9 @@ namespace ManglerAPI.HelloWorld;
 public class HelloWorldController : ControllerBase
 {
     [HttpGet]
-    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(HelloWorldGetResponse), StatusCodes.Status200OK)]
     public IActionResult GetAsync()
     {
-        return Ok("hello world!");
+        return Ok(new HelloWorldGetResponse() {Text = "Hello from the API"});
     }
 }
