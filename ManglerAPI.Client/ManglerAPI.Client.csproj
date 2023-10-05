@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <!-- Used for generating the ManglerAPI Client -->
+        <!-- see: https://learn.microsoft.com/en-us/visualstudio/msbuild/tutorial-rest-api-client-msbuild?view=vs-2022 -->
+        <OpenApiSpecLocation>manglerapi-openapi-spec.json</OpenApiSpecLocation>
+        <ClientClassName>ManglerClient</ClientClassName>
+        <ClientNamespace>ManglerAPIClient</ClientNamespace>
+        <ClientOutputDirectory>ManglerAPIClient</ClientOutputDirectory>
+        <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+        
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="NSwag.MSBuild" Version="14.0.0-preview006">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ManglerAPIClient\" />
+    </ItemGroup>
+    
+<!--    <Target Name="generateClient" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">-->
+<!--        <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net50) run nswag.json /variables:Configuration=$(Configuration)">-->
+<!--            <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />-->
+<!--        </Exec>-->
+<!--    </Target>-->
+    
+    <Target Name="generateClient" BeforeTargets="CoreCompile" Inputs="$(OpenApiSpecLocation)" Outputs="$(ClientOutputDirectory)\$(ClientClassName).cs">
+        <Exec Command="$(NSwagExe_Net70) openapi2csclient /input:$(OpenApiSpecLocation)  /classname:$(ClientClassName) /namespace:$(ClientNamespace) /output:$(ClientOutputDirectory)\$(ClientClassName).cs" ConsoleToMSBuild="true">
+            <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+        </Exec>
+    </Target>
+    
+    <Target Name="forceReGenerationOnRebuild" AfterTargets="CoreClean">
+        <Delete Files="$(ClientOutputDirectory)\$(ClientClassName).cs"></Delete>
+    </Target>
+
+
+</Project>
