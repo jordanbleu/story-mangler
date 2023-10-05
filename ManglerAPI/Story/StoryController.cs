@@ -18,6 +18,7 @@ public class StoryController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(typeof(StoryGetResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAsync([FromQuery] StoryGetRequest request)
     {
         var story = await _storyRepository.GetById(request.Id);
@@ -30,6 +31,7 @@ public class StoryController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> PostAsync(StoryPostRequest request)
     {
         await Task.CompletedTask;
@@ -37,6 +39,7 @@ public class StoryController : ControllerBase
     }
 
     [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> DeleteAsync(StoryDeleteRequest request)
     {
         await Task.CompletedTask;

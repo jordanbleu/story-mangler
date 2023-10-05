@@ -1,7 +1,10 @@
 ﻿using ManglerAPI.Extensions;
+using ManglerAPI.Infrastructure.ModelProviders;
 using ManglerAPI.Story.Repositories;
 using ManglerAPI.Story.Services;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +18,10 @@ builder.Services.AddSwaggerGen(c =>
     // Tells Mangler.CodeGen to format methods like '{HttpMethod}{ControllerName}Async'
     c.CustomOperationIds(e => $"{e.HttpMethod?.ToTitleCase()}{e.ActionDescriptor.RouteValues["controller"]}");
 });
+
 builder.Services.AddSingleton<StoryService>();
 builder.Services.AddSingleton<IStoryRepository, StoryDbRepository>();
+builder.Services.TryAddEnumerable(ServiceDescriptor.Transient<IApplicationModelProvider, ProduceResponseTypeModelProvider>());
 
 var app = builder.Build();
 

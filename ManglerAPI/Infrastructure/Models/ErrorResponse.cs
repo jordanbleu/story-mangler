@@ -1,6 +1,6 @@
 namespace ManglerAPI.Infrastructure.Models;
 
-public class ErrorResponseModel
+public class ErrorResponse
 {
     
 }

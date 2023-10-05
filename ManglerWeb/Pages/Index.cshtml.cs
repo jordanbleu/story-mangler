@@ -15,10 +15,10 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
+    public async Task OnGet()
     {
         var client = new ManglerClient("asdf", new HttpClient());
-        
+        var result = await client.GetHelloWorldAsync();
         
         // //var client = new ManglerAPIClient.ManglerClient();
         // var data = client.StoryAsync(555);
