@@ -33,6 +33,15 @@ services:
       dockerfile: ManglerAPI/Dockerfile
     depends_on: 
       - db
+        
+  manglerbot:
+    image: ${DOCKER_REGISTRY-}manglerbot
+    build:
+      context: .
+      dockerfile: ManglerBot/Dockerfile
+    depends_on:
+      - db
+        
 volumes:
   mangler-db:
     driver: local

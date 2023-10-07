@@ -21,15 +21,45 @@ services:
       RESHARPER_LOG_CONF: "/riderLogsConf/backend-log.xml"
     image: "manglerapi:dev"
     ports:
-    - "127.0.0.1:57017:57100"
-    - "127.0.0.1:57217:57300"
+    - "127.0.0.1:57024:57100"
+    - "127.0.0.1:57224:57300"
     volumes:
     - "/Users/jbleu/.nuget/packages:/root/.nuget/fallbackpackages"
     - "/Users/jbleu/RiderProjects/story-mangler/ManglerAPI:/app:rw"
     - "/Users/jbleu/RiderProjects/story-mangler:/src:rw"
     - "/Users/jbleu/.local/share/JetBrains/RiderRemoteDebugger/2023.2.2/LinuxArm64:/riderDebugger"
     - "/Applications/Rider.app/Contents/bin:/riderLogsConf"
-    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_32_00:/riderLogs:rw"
+    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_44_09:/riderLogs:rw"
+    working_dir: "/app"
+  manglerbot:
+    build:
+      context: "/Users/jbleu/RiderProjects/story-mangler"
+      dockerfile: "ManglerBot/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "/riderDebugger/linux-arm64/dotnet/dotnet"
+    - "/riderDebugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      NUGET_PACKAGES: "/Users/jbleu/.nuget/packages"
+      NUGET_FALLBACK_PACKAGES: "/Users/jbleu/.nuget/packages"
+      RIDER_DEBUGGER_LOG_DIR: "/riderLogs"
+      RESHARPER_LOG_CONF: "/riderLogsConf/backend-log.xml"
+    image: "manglerbot:dev"
+    ports:
+    - "127.0.0.1:57025:57100"
+    - "127.0.0.1:57225:57300"
+    volumes:
+    - "/Users/jbleu/.nuget/packages:/root/.nuget/fallbackpackages"
+    - "/Users/jbleu/RiderProjects/story-mangler/ManglerBot:/app:rw"
+    - "/Users/jbleu/RiderProjects/story-mangler:/src:rw"
+    - "/Users/jbleu/.local/share/JetBrains/RiderRemoteDebugger/2023.2.2/LinuxArm64:/riderDebugger"
+    - "/Applications/Rider.app/Contents/bin:/riderLogsConf"
+    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_44_09:/riderLogs:rw"
     working_dir: "/app"
   manglerweb:
     build:
@@ -52,13 +82,13 @@ services:
       RESHARPER_LOG_CONF: "/riderLogsConf/backend-log.xml"
     image: "manglerweb:dev"
     ports:
-    - "127.0.0.1:57018:57100"
-    - "127.0.0.1:57218:57300"
+    - "127.0.0.1:57026:57100"
+    - "127.0.0.1:57226:57300"
     volumes:
     - "/Users/jbleu/.nuget/packages:/root/.nuget/fallbackpackages"
     - "/Users/jbleu/RiderProjects/story-mangler/ManglerWeb:/app:rw"
     - "/Users/jbleu/RiderProjects/story-mangler:/src:rw"
     - "/Users/jbleu/.local/share/JetBrains/RiderRemoteDebugger/2023.2.2/LinuxArm64:/riderDebugger"
     - "/Applications/Rider.app/Contents/bin:/riderLogsConf"
-    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_32_00:/riderLogs:rw"
+    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_44_09:/riderLogs:rw"
     working_dir: "/app"

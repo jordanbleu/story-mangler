@@ -30,6 +30,8 @@
 * Docker Links:
   * Website: http://localhost:51557/
   * WebAPI Swagger UI: localhost:51554/swagger/
+  * ManglerBot Swagger UI: localhost:57222/swagger/
+    * (currently no endpoints but good to test if bot is up)
 
 
 ### Opening the apps from Docker
