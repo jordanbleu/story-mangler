@@ -38,6 +38,7 @@ This isn't needed by the client generator but it tells swagger consumers what to
 
 * Idempotent controller methods
 * Use JSON for everything, no plaintext or anything weird.
+  * The client currently actually fails for non-json responses lol
 * No verbs in endpoints, only nouns.  Use the HTTP method as the noun.  For example, DONT do 'POST /story/delete/{id}' do `DELETE /story/{id}`
 * Nest routes within endpoints in a logical way.  Example, a story has storylines -> `GET /story/{id}/storylines`
 * (not a characteristic of REST technically) but keep presentation logic OUT of the API.  API is data driven, return data only.

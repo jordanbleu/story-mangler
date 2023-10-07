@@ -1,15 +1,38 @@
-version: '3.4'
+version: '3.8'
 
 services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'manglerDb'
+#      MYSQL_USER: 'user'
+ #     MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mangler-db:/var/lib/mysql
+      - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/a.sql
+      - ./ManglerDb/data.sql:/docker-entrypoint-initdb.d/b.sql
+  
   manglerweb:
     image: ${DOCKER_REGISTRY-}manglerweb
     build:
       context: .
       dockerfile: ManglerWeb/Dockerfile
+    depends_on: 
+      - manglerapi
 
   manglerapi:
     image: ${DOCKER_REGISTRY-}manglerapi
     build:
       context: .
       dockerfile: ManglerAPI/Dockerfile
-
+    depends_on: 
+      - db
+volumes:
+  mangler-db:
+    driver: local

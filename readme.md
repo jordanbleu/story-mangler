@@ -33,11 +33,8 @@
 
 
 ### Opening the apps from Docker
-* Web App
-  * To open in browser, under the `ports` column click the :80 port
-* API
-  * Again, under ports click the :80 port
-  * To get to swagger UI append `/swagger` to the URL
+* Web App: http://localhost:50883/
+* Web API Swagger Page: http://localhost:50881/swagger/index.html
 
 ### Troubleshooting
 
