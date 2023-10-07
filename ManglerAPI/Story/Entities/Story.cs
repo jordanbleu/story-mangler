@@ -3,15 +3,6 @@ namespace ManglerAPI.Story.Entities;
 
 public record Story
 {
-    public Story(long id, long authorUserId, string title, long? groupId, bool isComplete)
-    {
-        Id = id;
-        AuthorUserId = authorUserId;
-        Title = title;
-        GroupId = groupId;
-        IsComplete = isComplete;
-    }
-
     /// <summary>
     /// The primary key of the Story record
     /// </summary>
@@ -25,14 +16,31 @@ public record Story
     /// <summary>
     /// User ID of the person who first created the story
     /// </summary>
-    public long AuthorUserId { get; }
+    public long AuthorId { get; }
     
     /// <summary>
-    /// Information about the client / group that created the story.  If left
-    /// null, will be a public story
+    /// Information about the client / group that created the story.  Can be null
     /// </summary>
-    public long? GroupId { get; } 
+    public long? GuildId { get; } 
+
+    /// <summary>
+    /// Date the story was marked completed
+    /// </summary>
+    public DateTime? CompleteDt { get; }
     
-    public bool IsComplete { get; }
+    /// <summary>
+    /// Date that the story was first created
+    /// </summary>
+    public DateTime CreateDt { get; }
+    
+    /// <summary>
+    /// If true, the story will show up to the public
+    /// </summary>
+    public bool IsViewableByPublic { get; }
+    
+    /// <summary>
+    /// If true, will show up to users who want to contribute to a random story
+    /// </summary>
+    public bool IsWritableByPublic { get; }
     
 }

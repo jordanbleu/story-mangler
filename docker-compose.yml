@@ -18,7 +18,6 @@ services:
       - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/a.sql
       - ./ManglerDb/data.sql:/docker-entrypoint-initdb.d/b.sql
   
-  
   manglerweb:
     image: ${DOCKER_REGISTRY-}manglerweb
     build:
@@ -34,9 +33,15 @@ services:
       dockerfile: ManglerAPI/Dockerfile
     depends_on: 
       - db
-  
-  
+      
+  manglerbot:
+    image: ${DOCKER_REGISTRY-}manglerbot
+    build:
+      context: .
+      dockerfile: ManglerBot/Dockerfile
+    depends_on: 
+      - manglerapi
+
 volumes:
   mangler-db:
     driver: local
-
