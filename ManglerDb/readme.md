@@ -22,6 +22,7 @@ For a bit of outdated information: https://www.jetbrains.com/help/rider/Managing
   * For server host, leave as localhost
   * For the port, type `3306`
   * username is `root`, password is `password`
+  * database is 'manglerDb'
 
 #### Notes:
 * Since rider doesn't attach a debugger to the mysql it will keep running if you click the stop button
@@ -32,8 +33,11 @@ For a bit of outdated information: https://www.jetbrains.com/help/rider/Managing
 
 ## Development
 
-### init.sql
+### schema.sql
 
 This file defines the database structure.  It gets automatically run by docker on startup.  It should represent the latest schema.
 
+### data.sql
+
+This file will be run on docker after `schema.sql`.  It generates test data.
 
