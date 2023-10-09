@@ -21,15 +21,15 @@ services:
       RESHARPER_LOG_CONF: "/riderLogsConf/backend-log.xml"
     image: "manglerapi:dev"
     ports:
-    - "127.0.0.1:57027:57100"
-    - "127.0.0.1:57227:57300"
+    - "127.0.0.1:57072:57100"
+    - "127.0.0.1:57272:57300"
     volumes:
     - "/Users/jbleu/.nuget/packages:/root/.nuget/fallbackpackages"
     - "/Users/jbleu/RiderProjects/story-mangler/ManglerAPI:/app:rw"
     - "/Users/jbleu/RiderProjects/story-mangler:/src:rw"
     - "/Users/jbleu/.local/share/JetBrains/RiderRemoteDebugger/2023.2.2/LinuxArm64:/riderDebugger"
     - "/Applications/Rider.app/Contents/bin:/riderLogsConf"
-    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_56_31:/riderLogs:rw"
+    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_09_09_01_35:/riderLogs:rw"
     working_dir: "/app"
   manglerbot:
     build:
@@ -51,15 +51,15 @@ services:
       RESHARPER_LOG_CONF: "/riderLogsConf/backend-log.xml"
     image: "manglerbot:dev"
     ports:
-    - "127.0.0.1:57028:57100"
-    - "127.0.0.1:57228:57300"
+    - "127.0.0.1:57073:57100"
+    - "127.0.0.1:57273:57300"
     volumes:
     - "/Users/jbleu/.nuget/packages:/root/.nuget/fallbackpackages"
     - "/Users/jbleu/RiderProjects/story-mangler/ManglerBot:/app:rw"
     - "/Users/jbleu/RiderProjects/story-mangler:/src:rw"
     - "/Users/jbleu/.local/share/JetBrains/RiderRemoteDebugger/2023.2.2/LinuxArm64:/riderDebugger"
     - "/Applications/Rider.app/Contents/bin:/riderLogsConf"
-    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_56_31:/riderLogs:rw"
+    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_09_09_01_35:/riderLogs:rw"
     working_dir: "/app"
   manglerweb:
     build:
@@ -82,13 +82,13 @@ services:
       RESHARPER_LOG_CONF: "/riderLogsConf/backend-log.xml"
     image: "manglerweb:dev"
     ports:
-    - "127.0.0.1:57029:57100"
-    - "127.0.0.1:57229:57300"
+    - "127.0.0.1:57074:57100"
+    - "127.0.0.1:57274:57300"
     volumes:
     - "/Users/jbleu/.nuget/packages:/root/.nuget/fallbackpackages"
     - "/Users/jbleu/RiderProjects/story-mangler/ManglerWeb:/app:rw"
     - "/Users/jbleu/RiderProjects/story-mangler:/src:rw"
     - "/Users/jbleu/.local/share/JetBrains/RiderRemoteDebugger/2023.2.2/LinuxArm64:/riderDebugger"
     - "/Applications/Rider.app/Contents/bin:/riderLogsConf"
-    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_07_16_56_31:/riderLogs:rw"
+    - "/Users/jbleu/Library/Logs/JetBrains/Rider2023.2/DebuggerWorker/JetBrains.Debugger.Worker.2023_10_09_09_01_35:/riderLogs:rw"
     working_dir: "/app"
