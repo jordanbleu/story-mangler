@@ -1,6 +1,7 @@
 
 using Discord.WebSocket;
 using ManglerBot.Commands;
+using ManglerBot.Controllers;
 using ManglerBot.Services;
 using ManglerBot.Workers;
 using Microsoft.Extensions.Hosting;
@@ -18,7 +19,10 @@ builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddHostedService<DiscordBotWorker>();
 builder.Services.AddSingleton<CommandHandlerService>();
 builder.Services.AddSingleton<DiscordSocketClient>();
+
 builder.Services.AddSingleton<ISlashCommand, HelloCommand>();
+builder.Services.AddSingleton<ISlashCommand, WeatherCommand>();
+
 builder.Logging.AddConsole();
 
 var app = builder.Build();

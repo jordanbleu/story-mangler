@@ -32,6 +32,7 @@ Print("Started!  Waiting for it to be ready.");
 
 client.Ready += () => CommandGenerator.GenerateCommands(client);
 
-Print("All done <3");
-await Task.CompletedTask;
+// This thread waits forever, the other thread running the commands should exit for us
+// Not a great way to do that but who care's its a utility app
+await Task.Delay(-1);
 

@@ -71,6 +71,9 @@ public static class CommandGenerator
         {
             Print("Logging out of discord...");
             await client.LogoutAsync();
+            Console.WriteLine("All done, press enter to exit");
+            Console.ReadLine();
+            Environment.Exit(0);
         }
     }
 }
