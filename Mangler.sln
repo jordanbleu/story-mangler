@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerAPI.CodeGen", "utili
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerDb", "ManglerDb\ManglerDb.csproj", "{65C753AF-9D13-4ABE-AD05-3B41A0C8E9D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerBot", "ManglerBot\ManglerBot.csproj", "{259295D5-2FE0-4E8B-9BFE-00D60A59E769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerBot.CommandGen", "utilities\ManglerBot.CommandGen\ManglerBot.CommandGen.csproj", "{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{65C753AF-9D13-4ABE-AD05-3B41A0C8E9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C753AF-9D13-4ABE-AD05-3B41A0C8E9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C753AF-9D13-4ABE-AD05-3B41A0C8E9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259295D5-2FE0-4E8B-9BFE-00D60A59E769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259295D5-2FE0-4E8B-9BFE-00D60A59E769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259295D5-2FE0-4E8B-9BFE-00D60A59E769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259295D5-2FE0-4E8B-9BFE-00D60A59E769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +74,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4B7B84E4-1969-4298-A7CC-61C1FA30F5A4} = {BC2C69B2-3C10-45B6-84DE-589FB79134A3}
+		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21} = {BC2C69B2-3C10-45B6-84DE-589FB79134A3}
 	EndGlobalSection
 EndGlobal
