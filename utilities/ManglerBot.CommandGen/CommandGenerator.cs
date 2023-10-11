@@ -13,50 +13,63 @@ public static class CommandGenerator
         {
             var commandInterfaceType = typeof(ISlashCommand);
             
-            var allCommands = AppDomain.CurrentDomain.GetAssemblies()
+            var commandImplementations = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(t => commandInterfaceType.IsAssignableFrom(t))
                 .Where(t => t != commandInterfaceType)
+                .Select(t=>Activator.CreateInstance(t) as ISlashCommand)
                 .ToList();
 
-            if (allCommands?.Any() != true)
+            if (commandImplementations?.Any() != true)
             {
-                Error("No commands found at all.  Don't think that's right.");
+                Error("No command implementations found at all.  Don't think that's right.");
                 return;
             }
 
-            var totalCommands = allCommands.Count;
+            var totalCommands = commandImplementations.Count;
             var currentCommandIndex = 0;
+            
+            Print($"Found {totalCommands} command implementations");
 
-            Print($"Found {totalCommands} command(s)");
-
-            foreach (var cmdType in allCommands)
+            Print("Getting currently registered commands from discord...");
+            
+            var registeredCommands = await client.GetGlobalApplicationCommandsAsync();
+            var implementedCommands = commandImplementations.Where(i => i is not null).Select(i => i.Name).ToHashSet();
+            
+            foreach (var registeredCommand in registeredCommands)
             {
-                Print($"Generating command {++currentCommandIndex} of {totalCommands}.");
+                if (implementedCommands.Contains(registeredCommand.Name)) continue;
+                Print($"\tDeleting existing command with no implementation: {registeredCommand.Name}");
+                await registeredCommand.DeleteAsync();
+            }
 
-                if (Activator.CreateInstance(cmdType) is not ISlashCommand inst)
+            Print("Done with registered commands, now we are gonna register / re-register new commands");
+
+            foreach (var commandImpl in commandImplementations)
+            {
+                if (commandImpl is null)
                 {
-                    throw new InvalidCastException($"Something went wrong casting {cmdType.Name} to ISlashCommand.");
+                    throw new InvalidCastException("There was an issue casting a command impl as ICommand");
                 }
-
-                Print($"Generating command {inst.Name}.");
-
-                var parameterAttributes = cmdType.GetCustomAttributes(typeof(CommandParameterAttribute), false)
+                
+                Print($"Generating command {commandImpl.Name} ({++currentCommandIndex} of {totalCommands}).");
+                
+                var parameterAttributes = commandImpl.GetType().GetCustomAttributes(typeof(CommandParameterAttribute), false)
                     .Select(attr => (CommandParameterAttribute)attr);
 
                 var globalCommand = new SlashCommandBuilder()
-                    .WithName(inst.Name)
-                    .WithDescription(inst.Description);
+                    .WithName(commandImpl.Name)
+                    .WithDescription(commandImpl.Description);
 
                 foreach (var par in parameterAttributes)
                 {
-                    Print("Adding option: " + par.Name);
+                    Print("\tAdding option: " + par.Name);
                     globalCommand.AddOption(par.Name, par.Type, par.Description, par.IsRequired);
                 }
 
-                Print("Sending to discord...");
+                Print($"Sending {commandImpl.Name} to discord...");
                 await client.CreateGlobalApplicationCommandAsync(globalCommand.Build());
-                Print("done");
+                Print("...done");
             }
         }
         catch (HttpException ex)
