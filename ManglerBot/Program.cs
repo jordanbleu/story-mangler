@@ -21,6 +21,7 @@ builder.Services.AddSingleton<CommandHandlerService>();
 builder.Services.AddSingleton<DiscordSocketClient>();
 
 builder.Services.AddSingleton<ISlashCommand, HelloCommand>();
+builder.Services.AddSingleton<ISlashCommand, ReadCommand>();
 
 builder.Logging.AddConsole();
 

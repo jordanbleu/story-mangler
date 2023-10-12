@@ -4,7 +4,7 @@
 -- ------------------------------------------------------------------------------------------
 -- DROP EXISTING DATABASE AND RECREATE
 -- ------------------------------------------------------------------------------------------
--- select 'hello world'
+
 drop database if exists manglerDb;
 create database manglerDb;
 
