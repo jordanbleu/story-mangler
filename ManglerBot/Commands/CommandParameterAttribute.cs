@@ -5,6 +5,7 @@ namespace ManglerBot.Commands;
 /// <summary>
 /// This is used by the command generator to tell discord what parameters we allow.
 /// </summary>
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public class CommandParameterAttribute : Attribute
 {
     /// <summary>
@@ -26,4 +27,6 @@ public class CommandParameterAttribute : Attribute
     /// If true, the parameter is required.  If false, it is not.
     /// </summary>
     public bool IsRequired { get; set; } = true;
+    
+    
 }

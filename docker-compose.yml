@@ -16,7 +16,8 @@ services:
     volumes:
       - mangler-db:/var/lib/mysql
       - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/a.sql
-      - ./ManglerDb/data.sql:/docker-entrypoint-initdb.d/b.sql
+      - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/b.sql
+      - ./ManglerDb/data.sql:/docker-entrypoint-initdb.d/c.sql
   
   manglerweb:
     image: ${DOCKER_REGISTRY-}manglerweb
