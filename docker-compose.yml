@@ -1,24 +1,25 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'manglerDb'
-#      MYSQL_USER: 'user'
- #     MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      - '3306:3306'
-    expose:
-      - '3306'
-    volumes:
-      - mangler-db:/var/lib/mysql
-      - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/a.sql
-      - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/b.sql
-      - ./ManglerDb/data.sql:/docker-entrypoint-initdb.d/c.sql
   
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - '27017:27017'
+    volumes:
+      - manglerdb:/data/db
+        
+  manglerapi:
+    image: ${DOCKER_REGISTRY-}manglerapi
+    build:
+      context: .
+      dockerfile: ManglerAPI/Dockerfile
+    depends_on:
+      - mongodb
+
   manglerweb:
     image: ${DOCKER_REGISTRY-}manglerweb
     build:
@@ -26,14 +27,6 @@ services:
       dockerfile: ManglerWeb/Dockerfile
     depends_on: 
       - manglerapi
-
-  manglerapi:
-    image: ${DOCKER_REGISTRY-}manglerapi
-    build:
-      context: .
-      dockerfile: ManglerAPI/Dockerfile
-    depends_on: 
-      - db
         
   manglerbot:
     image: ${DOCKER_REGISTRY-}manglerbot
@@ -41,8 +34,7 @@ services:
       context: .
       dockerfile: ManglerBot/Dockerfile
     depends_on:
-      - db
+      - manglerapi
         
 volumes:
-  mangler-db:
-    driver: local
+  manglerdb:

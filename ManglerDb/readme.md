@@ -2,11 +2,10 @@
 
 ```Text
 ⚠ 
-Note: This project is a class library as a hack to get 
-around Rider's lack of sqlproj support.  Don't reference it as code anywhere.
+Note: This project is a class library but don't reference it as code anywhere.
 ```
 
-This is the repository where sql scripts are added.  The database is a MySql db.
+This is the repository where sql scripts are added.  The database is a MongoDb.
 
 ## Accessing the database
 
@@ -18,9 +17,8 @@ For a bit of outdated information: https://www.jetbrains.com/help/rider/Managing
 * Open the `database` window View > Tool Windows > Database
 * Click the plus / Connect to database 
   * Add datasource manually
-  * For datasource, select mysql
-  * For server host, leave as localhost
-  * For the port, type `3306`
+  * For datasource, select mongodb
+  * Leave default server host / port
   * username is `root`, password is `password`
   * database is 'manglerDb'
 
