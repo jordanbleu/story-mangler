@@ -5,10 +5,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 #      - ASPNETCORE_URLS=https://+:443;http://+:80
-    ports:
-      - "80"
-      - "443"
-      - "50883:80"
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
@@ -17,10 +13,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 #      - ASPNETCORE_URLS=https://+:443;http://+:80
-    ports:
-      - "80"
-      - "443"
-      - "50881:80"
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
@@ -29,10 +21,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     #      - ASPNETCORE_URLS=https://+:443;http://+:80
-    ports:
-      - "80"
-      - "443"
-      - "57222:80"
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro

@@ -17,14 +17,14 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        var client = new ManglerClient("http://host.docker.internal:50881", new HttpClient());
+        var client = new ManglerClient("http://host.docker.internal:50883", new HttpClient());
 
         try
         {
             var result = await client.GetHelloWorldAsync();
             ApiText = result?.Text ?? "{the api call worked fine but the response was null}";
         }
-        catch (ApiException<ErrorResponse> e)
+        catch (ApiException<ErrorResponseModel> e)
         {
             ApiText = "there was an exception talking to the API. " + e.Message;
         }

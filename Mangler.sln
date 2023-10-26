@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerBot", "ManglerBot\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManglerBot.CommandGen", "utilities\ManglerBot.CommandGen\ManglerBot.CommandGen.csproj", "{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mangler.Common", "Mangler.Common\Mangler.Common.csproj", "{FFB3AB10-7B9E-4149-96FC-6AB9D2625E7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17CD0C33-1C5C-43CF-BB19-6ABEB7240C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB3AB10-7B9E-4149-96FC-6AB9D2625E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB3AB10-7B9E-4149-96FC-6AB9D2625E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB3AB10-7B9E-4149-96FC-6AB9D2625E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB3AB10-7B9E-4149-96FC-6AB9D2625E7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

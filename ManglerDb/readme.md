@@ -5,7 +5,7 @@
 Note: This project is a class library but don't reference it as code anywhere.
 ```
 
-This is the repository where sql scripts are added.  The database is a MongoDb.
+This is the repository where scripts are added.  The database is a MongoDb.
 
 ## Accessing the database
 
@@ -23,19 +23,14 @@ For a bit of outdated information: https://www.jetbrains.com/help/rider/Managing
   * database is 'manglerDb'
 
 #### Notes:
-* Since rider doesn't attach a debugger to the mysql it will keep running if you click the stop button
-  * Use the docker console to stop it
+* Since rider doesn't attach a debugger to mongo it will keep running if you click the stop button
+  * Use the docker console to stop it with `docker compose down`
 * Data outside the mangler database will persist even after terminating.  To dump everything, use the command `docker-compose down -v`
   * Note that this will require you to reconnect to the db after rebuilding.
   * Also note that this will delete all the containers (which is fine, they'll just be rebuilt)
 
 ## Development
 
-### schema.sql
+### mongo-init.js
 
-This file defines the database structure.  It gets automatically run by docker on startup.  It should represent the latest schema.
-
-### data.sql
-
-This file will be run on docker after `schema.sql`.  It generates test data.
-
+* 

@@ -7,13 +7,21 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: manglerDb
     ports:
       - '27017:27017'
+    expose:
+      - "27017"
     volumes:
+      - ./ManglerDb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - manglerdb:/data/db
         
   manglerapi:
     image: ${DOCKER_REGISTRY-}manglerapi
+    ports:
+      - "80"
+      - "443"
+      - "50883:80"
     build:
       context: .
       dockerfile: ManglerAPI/Dockerfile
@@ -22,6 +30,10 @@ services:
 
   manglerweb:
     image: ${DOCKER_REGISTRY-}manglerweb
+    ports:
+      - "80"
+      - "443"
+      - "57232:80"
     build:
       context: .
       dockerfile: ManglerWeb/Dockerfile
@@ -30,6 +42,10 @@ services:
         
   manglerbot:
     image: ${DOCKER_REGISTRY-}manglerbot
+    ports:
+      - "80"
+      - "443"
+      - "57222:80"
     build:
       context: .
       dockerfile: ManglerBot/Dockerfile
