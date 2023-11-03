@@ -7,8 +7,9 @@ services:
     environment:
       MYSQL_DATABASE: 'manglerDb'
 #      MYSQL_USER: 'user'
- #     MYSQL_PASSWORD: 'password'
+#      MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_HOST: '%'
     ports:
       - '3306:3306'
     expose:
@@ -16,8 +17,7 @@ services:
     volumes:
       - mangler-db:/var/lib/mysql
       - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/a.sql
-      - ./ManglerDb/schema.sql:/docker-entrypoint-initdb.d/b.sql
-      - ./ManglerDb/data.sql:/docker-entrypoint-initdb.d/c.sql
+      - ./ManglerDb/data.sql:/docker-entrypoint-initdb.d/b.sql
   
   manglerweb:
     image: ${DOCKER_REGISTRY-}manglerweb

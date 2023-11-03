@@ -24,10 +24,10 @@ public class ProduceResponseTypeModelProvider : IApplicationModelProvider
         {
             foreach (var action in controller.Actions)
             {
-                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status403Forbidden));
-                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status404NotFound));
-                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status422UnprocessableEntity));
-                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status500InternalServerError));
+                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponseModel), StatusCodes.Status403Forbidden));
+                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponseModel), StatusCodes.Status404NotFound));
+                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponseModel), StatusCodes.Status422UnprocessableEntity));
+                action.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponseModel), StatusCodes.Status500InternalServerError));
             }
         }
     }

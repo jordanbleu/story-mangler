@@ -21,8 +21,9 @@ use manglerDb;
 create table Story(
                       Id int not null auto_increment,
                       Title nvarchar(120),
-                      AuthorId int,
-                      GuildId int,
+                      AuthorUserIdentifier nvarchar(36),
+                      AuthorClientType tinyint,
+                      GuildIdentifier nvarchar(120),
                       CompleteDt datetime,
                       CreateDt datetime,
                       IsViewableByPublic bit,
@@ -31,9 +32,9 @@ create table Story(
 );
 
 -- since we will commonly find stories for a given group
-create index idx_groupid on Story(GuildId);
+create index idx_guildid on Story(GuildIdentifier);
 -- since we will commonly find stories a user's own stories
-create index idx_authoruserid on Story(AuthorId);
+create index idx_authoruseridentifier on Story(AuthorUserIdentifier);
 
 --
 -- A storyline is a line of a story.  Lines are always written by a particular user.
@@ -41,7 +42,8 @@ create index idx_authoruserid on Story(AuthorId);
 create table StoryLine(
                           Id int not null auto_increment,
                           StoryId int not null,
-                          AuthorId int not null,
+                          AuthorUserIdentifier nvarchar(36),
+                          AuthorClientType tinyint,
                           Text nvarchar(200),
                           CreateDt datetime,
                           CompleteDt datetime,
@@ -51,37 +53,40 @@ create table StoryLine(
 -- most common use case is finding the latest few lines of a story
 create index idx_storyid_createdt on StoryLine(StoryId, CreateDt desc);
 
---
--- Represents a grouping of users that share stories with each other. 
--- The best example would be a client type of 'discord' and an identifier being the guildId
--- Contrary to naming, this doesn't have to be a discord server.
---
-create table Guild(
-                      Id int not null auto_increment,
-                      GuildIdentifier nvarchar(200) not null,
-                      ClientType tinyint not null,
-                      Primary Key (Id)
-);
+-- Evaluate whether or not we need these 
 
---
--- Join table between an author and it's guild, since one user may be part of 
--- many guilds.
---
-create table AuthorGuild(
-                            AuthorId int not null,
-                            GuildId int not null,
-                            PRIMARY KEY (AuthorId, GuildId)
-);
 
---
--- An author is logically a 'user', except for authentication stuff
---
-create table Author(
-                       Id int not null auto_increment,
-                       Name nvarchar(100),
-                       UserIdentifier nvarchar(200) not null,
-                       ClientType int not null,
-                       PRIMARY KEY (Id)
-);
-
-create index idx_clienttype_useridentifier on Author(ClientType, UserIdentifier);
+-- --
+-- -- Represents a grouping of users that share stories with each other. 
+-- -- The best example would be a client type of 'discord' and an identifier being the guildId
+-- -- Contrary to naming, this doesn't have to be a discord server.
+-- --
+-- create table Guild(
+--                       Id int not null auto_increment,
+--                       GuildIdentifier nvarchar(200) not null,
+--                       ClientType tinyint not null,
+--                       Primary Key (Id)
+-- );
+-- 
+-- --
+-- -- Join table between an author and it's guild, since one user may be part of 
+-- -- many guilds.
+-- --
+-- create table AuthorGuild(
+--                             AuthorId int not null,
+--                             GuildId int not null,
+--                             PRIMARY KEY (AuthorId, GuildId)
+-- );
+-- 
+-- --
+-- -- An author is logically a 'user', except for authentication stuff
+-- --
+-- create table Author(
+--                        Id int not null auto_increment,
+--                        Name nvarchar(100),
+--                        UserIdentifier nvarchar(200) not null,
+--                        ClientType int not null,
+--                        PRIMARY KEY (Id)
+-- );
+-- 
+-- create index idx_clienttype_useridentifier on Author(ClientType, UserIdentifier);
